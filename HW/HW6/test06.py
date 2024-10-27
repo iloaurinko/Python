@@ -1,13 +1,40 @@
 # Сайт: https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-
 # GetBookings
+from http import HTTPStatus
+from requests import Response
+
+class Urls:
+    URL_AUTH = "https://restful-booker.herokuapp.com/auth"
+    URL = "https://restful-booker.herokuapp.com/booking"
+urls = Urls()
+
+class Assertions:
+
+    @staticmethod
+    def assert_status_code(response: Response, expected_status_code):
+        actual_status_code = response.status_code
+        assert actual_status_code == HTTPStatus.OK, f"Unexpected status code: {expected_status_code}, but got {actual_status_code}"
+
+    @staticmethod
+    def assert_last_first_name(lst, lst1):
+        assert lst == lst1, f"Unexpected full name: {lst1}, but got {lst}"
+assertions = Assertions()
 
 # 1 GET
-#
 # - Создайте тест для получения списка всех id всех бронирований на сайте.
 # - Тест считается пройденным, если status code ответа равен 200.
-#
+def get_all_bookings():
+    """
+    Делает GET запрос и возвращает id всех бронирований.
+    :return: Response, объект с ответом сервера
+    """
+    return requests.get(URL)
+
+def test_get_all_bookings():
+    response = get_all_bookings()
+    assert response.status_code == 200, "Код статуса не равен 200!"
+
 # 2 POST
-#
 # Создайте тест, который включает в себя следующие шаги:
 # - Шаг 1. Создайте новое бронирование на сайте используя ваши данные.
 # - Шаг 2. C помощью id вашего созданного бронирования получите
