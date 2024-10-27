@@ -1,0 +1,8 @@
+command promt
+* список установленных библиотек pip list
+* обновление python.exe -m pip install --upgrade pip
+* активация виртуального пространства .\\venv\Scripts\activate или \venv\Scripts\activate
+* выход из виртуального пространства: deactivate
+(venv) PS C:\Users\chaad\OneDrive\Documents\RedRover\Python\python_lessons> deactivate
+* установка пакетов  pip install requests pytest или pip install pytest
+
