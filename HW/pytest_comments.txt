@@ -159,6 +159,7 @@ def test_select(db_connection):
 import pytest
 
 # Тест, который ожидается как провал
+*
 @pytest.mark.xfail(reason="Известная ошибка в функции")
 def test_function_that_fails():
     assert 1 + 1 == 3  # Этот тест всегда будет провален
