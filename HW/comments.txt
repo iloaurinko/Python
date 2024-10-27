@@ -12,6 +12,7 @@ command promt
 *@pytest.mark.parametrize, @pytest.mark.skip, @pytest.mark.skipif, @pytest.mark.xfail, @pytest.mark.usefixtures,
 @pytest.mark.smoke, @pytest.mark.regression, @pytest.mark.fixture, @pytest.mark.django_db, @pytest.mark.asyncio,
 @pytest.mark.order, @pytest.mark.timeout, @pytest.mark.need_review, @pytest.mark.db, @pytest.mark.webtest
+*
 
 
 
