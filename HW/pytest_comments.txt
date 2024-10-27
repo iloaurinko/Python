@@ -1,0 +1,177 @@
+* @pytest.fixture — это декоратор в библиотеке для тестирования на Python pytest, который используется для создания
+и настройки объектов, которые могут понадобиться в тестах. Функции, помеченные этим декоратором,
+называются "фикстурами". Они позволяют избежать дублирования кода и
+обеспечивают удобный способ подготовки среды для тестирования.
+Как это работает?
+Фикстуры создают необходимые данные или объекты, которые будут использоваться в тестах.
+Фикстура вызывается pytest автоматически, когда тесту требуется её результат.
+Фикстуры можно переиспользовать в разных тестах.
+Пример использования:
+
+import pytest
+# Определение фикстуры
+@pytest.fixture
+def sample_data():
+    # Подготовка данных для теста
+    data = {"name": "Alice", "age": 30}
+    return data
+# Использование фикстуры в тесте
+def test_example(sample_data):
+    # sample_data будет доступен как результат фикстуры
+    assert sample_data["name"] == "Alice"
+    assert sample_data["age"] == 30
+В этом примере sample_data — это фикстура, которая создаёт словарь с данными, которые можно использовать в тестах.
+Тест test_example получает доступ к этим данным как аргумент sample_data.
+
+Зачем использовать фикстуры?
+Повторное использование кода: если множество тестов нуждается в одном и том же объекте
+(например, подключение к базе данных или определённый набор данных), фикстуры позволяют избежать дублирования.
+Гибкость и контроль: можно определить, как и когда объект создаётся и уничтожается, что полезно,
+например, при тестировании работы с ресурсами (файлы, базы данных и т.д.).
+Чистота и структура: фикстуры помогают организовать тесты, сохраняя каждый тест в изоляции от других.
+Дополнительные параметры фикстур
+Фикстуры могут принимать дополнительные параметры, например:
+
+*scope — определяет область действия фикстуры (модуль, класс, функция, сессия).
+@pytest.fixture(scope = "session") - отработает только одну сессию
+import pytest
+import sqlite3
+
+# Фикстура с областью действия "session"
+@pytest.fixture(scope="session")
+def db_connection():
+    # Создание соединения с базой данных
+    connection = sqlite3.connect(":memory:")  # Используем временную базу данных
+    yield connection  # Возвращаем объект соединения
+    connection.close()  # Закрываем соединение после завершения тестов
+
+# Тесты, использующие фикстуру
+def test_insert(db_connection):
+    cursor = db_connection.cursor()
+    cursor.execute("CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT)")
+    cursor.execute("INSERT INTO users (name) VALUES ('Alice')")
+    db_connection.commit()
+
+    cursor.execute("SELECT name FROM users WHERE id=1")
+    result = cursor.fetchone()
+    assert result[0] == "Alice"
+
+def test_select(db_connection):
+    cursor = db_connection.cursor()
+    cursor.execute("SELECT name FROM users WHERE id=1")
+    result = cursor.fetchone()
+    assert result[0] == "Alice"
+*Что происходит в примере?
+1.Создание фикстуры db_connection:
+Соединение с базой данных создаётся один раз за сессию.
+Используется yield, чтобы передать объект соединения в тесты и затем выполнить код после yield для его закрытия.
+2.Использование фикстуры в тестах:
+Оба теста (test_insert и test_select) используют одно и то же соединение с базой данных.
+Это позволяет избежать повторного создания соединения для каждого теста, что ускоряет тестирование и упрощает код.
+
+@pytest.fixture("scope = "module") -определяет фикстуру, которая создается один раз для каждого модуля тестов.
+
+import pytest
+import sqlite3
+# Фикстура с областью действия "module"
+@pytest.fixture(scope="module")
+def db_connection():
+    # Создание соединения с базой данных
+    connection = sqlite3.connect(":memory:")  # Используем временную базу данных
+    yield connection  # Возвращаем объект соединения
+    connection.close()  # Закрываем соединение после завершения тестов в модуле
+
+# Тест 1, использующий фикстуру
+def test_insert(db_connection):
+    cursor = db_connection.cursor()
+    cursor.execute("CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT)")
+    cursor.execute("INSERT INTO users (name) VALUES ('Alice')")
+    db_connection.commit()
+
+    cursor.execute("SELECT name FROM users WHERE id=1")
+    result = cursor.fetchone()
+    assert result[0] == "Alice"
+
+# Тест 2, использующий ту же фикстуру
+def test_select(db_connection):
+    cursor = db_connection.cursor()
+    cursor.execute("SELECT name FROM users WHERE id=1")
+    result = cursor.fetchone()
+    assert result[0] == "Alice"
+
+Определение фикстуры db_connection:
+1.Соединение с базой данных создается один раз для всего модуля.
+Используется yield, чтобы вернуть соединение тестам, а затем выполнить код после yield для его закрытия.
+Тесты, использующие фикстуру:
+2. Оба теста (test_insert и test_select) используют одно и то же соединение с базой данных.
+Это позволяет избежать повторного создания соединения для каждого теста,
+что ускоряет выполнение тестов и делает код более чистым.
+Differences:
+Характеристика	          scope="session"	              scope="module"
+Когда создается	          Один раз за всю сессию          Один раз для каждого модуля тестов
+                           тестирования
+Когда уничтожается	       В конце сессии	              В конце выполнения всех тестов в модуле
+Применимость	          Используется глобально          Используется локально для тестов в одном модуле
+                          для всех тестов
+Примеры использования	  Подключение к базе данных,       Подготовка временных файлов, которые нужны только в одном модуле
+                          конфигурации, которые нужны
+                          всем тестам
+
+
+*autouse — если True, фикстура автоматически применяется ко всем тестам в области действия.
+Параметр autouse в фикстурах pytest позволяет автоматически применять фикстуру ко всем тестам,
+не указывая её явно в качестве аргумента. Это может быть полезно, когда вы хотите гарантировать,
+что определённая подготовка или очистка будет выполнена для всех тестов в рамках определённого скоупа.
+
+import pytest
+import sqlite3
+
+# Фикстура с областью видимости "module" и autouse=True
+@pytest.fixture(scope="module", autouse=True)
+def db_connection():
+    # Создание соединения с базой данных
+    connection = sqlite3.connect(":memory:")
+    print("\nСоздание соединения с базой данных")
+    yield connection  # Возвращаем объект соединения
+    connection.close()  # Закрываем соединение после завершения тестов
+    print("Закрытие соединения с базой данных")
+
+# Тест 1, использующий фикстуру
+def test_insert(db_connection):
+    cursor = db_connection.cursor()
+    cursor.execute("CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT)")
+    cursor.execute("INSERT INTO users (name) VALUES ('Alice')")
+    db_connection.commit()
+
+    cursor.execute("SELECT name FROM users WHERE id=1")
+    result = cursor.fetchone()
+    assert result[0] == "Alice"
+
+# Тест 2, использующий фикстуру
+def test_select(db_connection):
+    cursor = db_connection.cursor()
+    cursor.execute("SELECT name FROM users WHERE id=1")
+    result = cursor.fetchone()
+    assert result[0] == "Alice"
+
+@pytest.mark.xfail — это маркер в библиотеке pytest, который используется для обозначения тестов,
+ожидающих неудачного выполнения (провала).
+import pytest
+
+# Тест, который ожидается как провал
+@pytest.mark.xfail(reason="Известная ошибка в функции")
+def test_function_that_fails():
+    assert 1 + 1 == 3  # Этот тест всегда будет провален
+
+# Тест, который должен пройти
+def test_function_that_passes():
+    assert 1 + 1 == 2  # Этот тест пройдет успешно
+Example 2:
+
+import pytest
+import sys
+
+@pytest.mark.xfail(sys.platform == "win32", reason="Известная ошибка на Windows")
+def test_platform_specific_functionality():
+    assert 1 / 0  # Деление на ноль вызывает ошибку, но мы ожидаем его на Windows
+

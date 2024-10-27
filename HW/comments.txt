@@ -5,4 +5,13 @@ command promt
 * выход из виртуального пространства: deactivate
 (venv) PS C:\Users\chaad\OneDrive\Documents\RedRover\Python\python_lessons> deactivate
 * установка пакетов  pip install requests pytest или pip install pytest
+*запуск теста -pytest -sv test.py
+* запуск одного теста -pytest -sv test.py::Test(класс к которому относится тест)::test_check_sum(название теста)
+*@pytest.fixture, @pytest.fixture(scope = "session"), @pytest.fixture (scope = "module"),
+@pytest.fixture(scope="module", autouse=True)
+*@pytest.mark.parametrize, @pytest.mark.skip, @pytest.mark.skipif, @pytest.mark.xfail, @pytest.mark.usefixtures,
+@pytest.mark.smoke, @pytest.mark.regression, @pytest.mark.fixture, @pytest.mark.django_db, @pytest.mark.asyncio,
+@pytest.mark.order, @pytest.mark.timeout, @pytest.mark.need_review, @pytest.mark.db, @pytest.mark.webtest
+
+
 
