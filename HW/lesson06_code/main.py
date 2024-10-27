@@ -63,7 +63,7 @@ def patch_booking(id_):
     response = requests.patch(URL + f"/{id_}", data=data, headers=headers)
 
     return response
-
+#
 
 # response = create_booking()
 # my_id = response.json()["bookingid"]
