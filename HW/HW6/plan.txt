@@ -1,0 +1,19 @@
+* структура:
+*data:
+1.dataclasses(_init_.py, booking_data.py)
+2.generator( _init_.py,base_generator.py, booking_generator.py)
+3. urls.py (создать класс URL) +
+*scr:
+1. modules: (_init_.py, base_module.py, create_booking_module.py)
+2._init_.py
+3. assertions.py
+*tests:
+1._init_.py
+2.test_create_bookings.py
+3.test_delete_bookings.py
+4.test_get_bookings.py
+5.test_update_bookings.py
+*conftest.py
+*functions.py
+*pytest.ini
+*test.py

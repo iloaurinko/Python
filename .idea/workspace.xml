@@ -5,12 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e815d497-1e5c-44c2-b05a-d415cd901247" name="Changes" comment="HW5">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/python_lessons.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW/pytest_comments.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HW/HW6/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/HW/HW6/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HW/comments.txt" beforeDir="false" afterPath="$PROJECT_DIR$/HW/comments.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW/HW6/data/dataclasses/_init_.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW/HW6/data/dataclasses/booking_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW/HW6/data/generator/_init_.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW/HW6/data/generator/base_generator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW/HW6/data/generator/booking_generator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW/HW6/data/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW/HW6/functions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW/HW6/plan.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW/HW6/pytest.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW/HW6/scr/_init_.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW/HW6/scr/assertions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW/HW6/scr/modules/_init_.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW/HW6/scr/modules/base_module.p" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW/HW6/scr/modules/create_booking_module.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW/HW6/tests/_init_.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW/HW6/tests/test_create_bookings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW/HW6/tests/test_delete_bookings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW/HW6/tests/test_get_bookings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW/HW6/tests/test_update_bookings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +45,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2nyI8VbD85d5MOCaw5BCGvBr3v8" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -49,7 +65,7 @@
       <recent name="C:\Users\chaad\OneDrive\Documents\RedRover\Python\python_lessons\HW\HW6" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.HW5">
+  <component name="RunManager">
     <configuration name="HW5" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="python_lessons" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -128,7 +144,28 @@
       <option name="project" value="LOCAL" />
       <updated>1730021268126</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="HW5">
+      <created>1730034621521</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1730034621521</updated>
+    </task>
+    <task id="LOCAL-00005" summary="HW5">
+      <created>1730034637466</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1730034637466</updated>
+    </task>
+    <task id="LOCAL-00006" summary="HW5">
+      <created>1730034649341</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1730034649341</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
