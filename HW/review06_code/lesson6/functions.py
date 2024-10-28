@@ -15,3 +15,4 @@ def generate_checkin_checkout_dates(checkin=None, checkout=None):
         checkout = checkout_date.strftime('%Y-%m-%d')
 
     return checkin, checkout
+#

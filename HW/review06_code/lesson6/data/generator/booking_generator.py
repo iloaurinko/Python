@@ -20,3 +20,4 @@ class BookingGenerator(BaseGenerator):
             booking_dates=self.generate_booking_dates(booking_dates, checkin, checkout),
             additional_needs=self.get_random_word(additional_needs)
         )
+        #

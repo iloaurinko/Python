@@ -24,3 +24,4 @@ class BaseGenerator:
         if word is None:
             return self.faker.word()
         return word
+    #

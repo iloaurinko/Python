@@ -13,3 +13,4 @@ class BookingData:
     deposit_paid: bool = None
     booking_dates: BookingDates = None
     additional_needs: str = None
+#
